@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Gerador de QR Code</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <a class="btn btn-primary mt-3" href="index.html">Voltar</a>
+
+        <hr />
+
+        <h1>Gerador de QR Code</h1>
+
+        <label for="texto">Insira o texto que deseja codificar em um QR Code:</label><br>
+        <input type="text" id="texto" class="form-control">
+        <button class="btn btn-primary mt-2" onclick="gerarQRCode()">Gerar QR Code</button><br><br>
+
+        <hr/>
+
+        <div id="qrcode"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE2gF5YVZl8aVOhFXTNoB" crossorigin="anonymous"></script>
+
+    <script>
+        function gerarQRCode() {
+            var texto = document.getElementById("texto").value;
+            var qrcode = document.getElementById("qrcode").innerHTML = "";
+            qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: texto,
+                width: 256,
+                height: 256,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
+    </script>
+</body>
+
+</html>
