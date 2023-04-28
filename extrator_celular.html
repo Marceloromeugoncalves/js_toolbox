@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Extrator de Números de Celular</title>
+    <!-- Adicionando Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Extrator de Números de Celular</h1>
+
+        <a class="btn btn-primary mt-3" href="index.html">Voltar</a>
+
+        <hr />
+
+        <form>
+            <div class="form-group">
+                <label for="texto">Cole o texto aqui:</label>
+                <textarea class="form-control" id="texto" rows="5"></textarea>
+            </div>
+            <button type="button" class="btn btn-primary" id="btn-extrair">Extrair Números de Celular</button>
+        </form>
+        <div class="form-group">
+            <label for="resultado">Números de celular encontrados:</label>
+            <textarea class="form-control" id="resultado" rows="10" readonly></textarea>
+        </div>
+    </div>
+    <!-- Adicionando jQuery e Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE2gF5YVZl8aVOhFXTNoB" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $("#btn-extrair").click(function () {
+                var texto = $("#texto").val();
+                var regex = /\(\d{2}\)\s*\d{4,5}\-\d{4}/g;
+                var celulares = texto.match(regex);
+                if (celulares == null) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Nenhum número de celular encontrado no texto!',
+                    });
+                } else {
+                    $("#resultado").val(celulares.join("\n"));
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
