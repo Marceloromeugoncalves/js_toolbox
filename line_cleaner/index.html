@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Tornar linhas únicas</title>
+
+    <!-- CSS do Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <h2 class="text-center mt-5">LineCleaner</h2>
+
+        <p class="text-justify">
+            A ferramenta para remoção de quebra de linhas do texto é uma solução simples e eficaz para aqueles que desejam limpar o seu texto de quebras de linhas indesejadas. Com uma interface intuitiva e fácil de usar, esta ferramenta permite que você copie e cole o seu texto em uma caixa de texto e, em seguida, remova todas as quebras de linhas desnecessárias com apenas um clique.
+        </p>
+
+        <p class="text-justify">
+            Se você costuma lidar com textos em diferentes formatos, como emails, planilhas, documentos e apresentações, sabe o quão irritante pode ser ter que lidar com quebras de linhas aleatórias que quebram a fluidez do texto. Com a nossa ferramenta de remoção de quebras de linhas, você pode rapidamente e facilmente limpar o seu texto, deixando-o mais fácil de ler e apresentável.
+        </p>
+
+        <p class="text-justify">
+            Com esta ferramenta, você não precisa mais gastar tempo tedioso removendo manualmente as quebras de linhas do seu texto. Em vez disso, você pode se concentrar em editar e melhorar o conteúdo do seu texto, tornando-o mais claro e eficaz. Experimente a nossa ferramenta de remoção de quebras de linhas do texto hoje mesmo e economize tempo e esforço na edição de seus textos.
+        </p>
+
+        <form class="mt-2">
+            <textarea id="texto" class="form-control" rows="10" placeholder="Cole o texto aqui..."></textarea>
+            <button class="btn btn-primary float-right mt-2 ml-2" type="button" onclick="tornarLinhasUnicas()">Remover Quebra de Linha</button>
+            <button class="btn btn-warning float-right mt-2" type="button" onclick="copiarTexto()">Copiar</button>
+        </form>
+    </div>
+
+    <!-- Scripts do Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+        function tornarLinhasUnicas() {
+            const textarea = document.getElementById("texto");
+            const texto = textarea.value;
+            const novoTexto = texto.replace(/\n/g, " ");
+            textarea.value = novoTexto;
+        }
+
+        function copiarTexto() {
+            // Obtém o elemento textarea
+            const textarea = document.getElementById("texto");
+          
+            // Obtém o texto da textarea
+            const texto = textarea.value;
+          
+            // Cria um elemento de área de transferência temporário
+            const copiarTexto = document.createElement("textarea");
+          
+            // Define o valor do texto a ser copiado
+            copiarTexto.value = texto;
+          
+            // Adiciona o elemento ao corpo do documento
+            document.body.appendChild(copiarTexto);
+          
+            // Seleciona todo o texto dentro do elemento de área de transferência temporário
+            copiarTexto.select();
+          
+            // Copia o texto para a área de transferência do sistema
+            document.execCommand("copy");
+          
+            // Remove o elemento de área de transferência temporário
+            document.body.removeChild(copiarTexto);
+          
+            // Mostra uma mensagem de confirmação para o usuário
+            alert("Texto copiado para a área de transferência!");
+          }
+    </script>
+</body>
+
+</html>
